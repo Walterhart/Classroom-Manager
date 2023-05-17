@@ -1,13 +1,13 @@
+import React from 'react';
 
-import React, { useRef, useState } from 'react'
-
-function ClassList(props) {
-
+function SelectedClassInfo({ selectedClass }) {
   return (
     <div>
-       {props.classData.name}
+      Selected Class: {selectedClass.name}
+      <br />
+      Teacher: {selectedClass.teacher}
     </div>
-  )
+  );
 }
 
-export default ClassList
+export default SelectedClassInfo;
