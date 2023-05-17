@@ -1,0 +1,38 @@
+{
+    "Classes": [
+      {
+        "id": 1,
+        "name": "Algebra I"
+      },
+      {
+        "id": 2,
+        "name": "Algebra II"
+      },
+      {
+        "id": 3,
+        "name": "Calcus I"
+      },
+      {
+        "id": 4,
+        "name": "Geometry"
+      },
+      {
+        "id": 5,
+        "name": "Spanish I"
+      }
+      , {
+        "id": 6,
+        "name": "Spanish II"
+      }
+      , {
+        "id": 7,
+        "name": "Spanish III"
+      }
+    ],
+    "Students":[
+      {
+        "id": 1,
+        "name": "Bob Ross"
+      }
+    ]
+  }
