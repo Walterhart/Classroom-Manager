@@ -1,19 +1,22 @@
 import React, { useContext, useState } from 'react';
 import { StudentContext } from '@/context/StudentContext';
+import usePost from '@/hooks/usePost';
 
 function ClassInfo({ selectedClass }) {
-  const { students, isStudentsLoading } = useContext(StudentContext);
+  const { students, isStudentsLoading, setStudents } = useContext(StudentContext);
   const [newStudentName, setNewStudentName] = useState('');
-  const [sortOrder, setSortOrder] = useState('asc'); // Track the sort order state
+  const [sortOrder, setSortOrder] = useState('asc');
+  const { addStudent } = usePost(); 
 
   if (isStudentsLoading) {
     return <div>Loading students...</div>;
   }
 
-  // Filter the students based on the selected class
-  const filteredStudents = students.filter(student => student.classId === selectedClass.id);
+  const filteredStudents = students.filter(student => selectedClass ? student.classId.includes(selectedClass.id) : false);
 
-  // Sort the filtered students based on the sort order
+
+
+
   const sortedStudents = filteredStudents.sort((a, b) => {
     if (sortOrder === 'asc') {
       return a.name.localeCompare(b.name);
@@ -22,23 +25,18 @@ function ClassInfo({ selectedClass }) {
     }
   });
 
-  const handleAddStudent = (e) => {
+  const handleAddStudent = async (e) => {
     e.preventDefault();
-    
-    // Create a new student object with a unique id and the provided name
+
     const newStudent = {
-      id: Date.now(), // Generate a unique id using the current timestamp
+      id: Date.now(),
       name: newStudentName,
-      classId: selectedClass.id,
+      classId: selectedClass ? [selectedClass.id] : [],
     };
 
-    // Update the students data with the new student
-    const updatedStudents = [...students, newStudent];
+    await addStudent(newStudent); 
+    console.log(newStudent)
 
-    // Display the updated students list
-    console.log('Updated Students:', updatedStudents);
-
-    // Clear the input field after adding the student
     setNewStudentName('');
   };
 
@@ -52,11 +50,10 @@ function ClassInfo({ selectedClass }) {
 
   return (
     <div className="mt-8">
-      <h2 className="text-2xl font-bold mb-4">Class Info</h2>
-      <p className="mb-2">Teacher: {selectedClass.teacher}</p>
+      <p className="mb-2">Teacher: {selectedClass ? selectedClass.teacher : 'No teacher'}</p>
 
       <div className="flex mb-2">
-        <h3 className="text-xl font-bold mr-2">Students</h3>
+        <h3 className="text-xl mr-2">Students</h3>
         <div className="ml-auto">
           <button
             type="button"
@@ -80,11 +77,13 @@ function ClassInfo({ selectedClass }) {
       </div>
 
       {sortedStudents.length > 0 ? (
-        <ul className="list-disc pl-6">
-          {sortedStudents.map(student => (
-            <li key={student.id}>{student.name}</li>
-          ))}
-        </ul>
+        <div className="border rounded p-4 bg-blue-500">
+          <ul className="list-disc pl-6">
+            {sortedStudents.map(student => (
+              <li key={student.id}>{student.name}</li>
+            ))}
+          </ul>
+        </div>
       ) : (
         <p>No students found for this class.</p>
       )}

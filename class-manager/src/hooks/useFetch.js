@@ -12,7 +12,7 @@ function useFetch(url) {
       try {
         setIsLoading(true); // Set loading state to true before fetching data
 
-        // Fetching data from the provided URL using axios
+        // Fetching data from the provided URL 
         const { data: response } = await axios.get(url);
 
         setData(response); 

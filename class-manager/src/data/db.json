@@ -40,27 +40,17 @@
     {
       "id": 1,
       "name": "Bob Ross",
-      "classId": 1
+      "classId": [
+        1,
+        2
+      ]
     },
     {
-      "id": 2,
-      "name": "Courage the dog",
-      "classId": 4
-    },
-    {
-      "id": 3,
-      "name": "Charlie Brown",
-      "classId": 5
-    },
-    {
-      "id": 4,
-      "name": "Timmy Thompson",
-      "classId": 3
-    },
-    {
-      "id": 5,
-      "name": "Jimmy Thompson",
-      "classId": 3
+      "id": 1684552121635,
+      "name": "Tod Boss",
+      "classId": [
+        1
+      ]
     }
   ]
 }
