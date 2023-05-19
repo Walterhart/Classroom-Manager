@@ -12,7 +12,7 @@
     },
     {
       "id": 3,
-      "name": "Calcus I",
+      "name": "Calculus I",
       "teacher": "Mr. Thompson"
     },
     {
@@ -39,7 +39,23 @@
   "Students": [
     {
       "id": 1,
-      "name": "Bob Ross"
+      "name": "Bob Ross",
+      "classId": 1
+    },
+    {
+      "id": 2,
+      "name": "Courage the dog",
+      "classId": 4
+    },
+    {
+      "id": 3,
+      "name": "Charlie Brown",
+      "classId": 5
+    },
+    {
+      "id": 4,
+      "name": "Timmy Thompson",
+      "classId": 3
     }
   ]
 }

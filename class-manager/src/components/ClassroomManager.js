@@ -1,19 +1,22 @@
-import React, { useState } from 'react';
-import ClassList from './ClassList'; 
+import React, { useContext, useState } from 'react';
+import ClassList from './ClassInfo'; 
 import useFetch from '@/hooks/useFetch'; 
 import Dropdown from './Dropdown';
-import SelectedClassInfo from './ClassList';
+import ClassInfo from './ClassInfo';
+import { ClassContext } from '@/context/ClassContext';
+import { StudentContext } from '@/context/StudentContext';
 
 function ClassroomManager() { 
-  const { error, data, isLoading } = useFetch('http://localhost:3500/classes'); // Fetching data using the useFetch hook
+  const { classes, isClassesLoading, classError } = useContext(ClassContext);
+  const{ students, isStudentsLoading, studentError } = useContext(StudentContext)
   
   const [selectedClass, setSelectedClass] = useState(null);
-  if (isLoading) {
+  if (isClassesLoading || isStudentsLoading) {
     return <div>Loading...</div>; // Display a loading message if data is still being fetched
   }
   
-  if (error) {
-    console.log(error);
+  if (classError || studentError ) {
+    console.log(classError, studentError);
     return <div>Error with fetching data!</div>; // Display an error message if there was an error fetching data
   }
   const handleSelectClass = (classData) => {
@@ -21,8 +24,8 @@ function ClassroomManager() {
   };
   return (
     <div>
-       <Dropdown data={data} onSelectClass={handleSelectClass} /> {/* Render the Dropdown component and pass the fetched data as props */}
-       {selectedClass && <SelectedClassInfo selectedClass={selectedClass} />}
+       <Dropdown data={classes} onSelectClass={handleSelectClass} /> {/* Render the Dropdown component and pass the fetched data as props */}
+       {selectedClass &&  <ClassInfo selectedClass={selectedClass} students={students}  />}
     </div>
   );
 }
