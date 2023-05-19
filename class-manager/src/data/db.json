@@ -56,6 +56,11 @@
       "id": 4,
       "name": "Timmy Thompson",
       "classId": 3
+    },
+    {
+      "id": 5,
+      "name": "Jimmy Thompson",
+      "classId": 3
     }
   ]
 }
