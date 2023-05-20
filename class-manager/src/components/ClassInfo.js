@@ -7,6 +7,7 @@ function ClassInfo({ selectedClass }) {
   const [newStudentName, setNewStudentName] = useState('');
   const [sortOrder, setSortOrder] = useState('asc');
   const { addStudent } = usePost(); 
+  
 
   if (isStudentsLoading) {
     return <div>Loading students...</div>;
@@ -24,10 +25,15 @@ function ClassInfo({ selectedClass }) {
 
   const handleAddStudent = async (e) => {
     e.preventDefault();
-
+    const trimmedStudentName = newStudentName.trim().replace(/\s+/g, ' ')
+    const regex = /^[a-zA-Z0-9 ']*$/;
+    if (!regex.test(newStudentName)) {
+      alert("Special characters are not allowed!");
+      return;
+    }
     const newStudent = {
       id: Date.now(),
-      name: newStudentName,
+      name: trimmedStudentName,
       classId: selectedClass ? [selectedClass.id] : [],
     };
 
@@ -46,34 +52,36 @@ function ClassInfo({ selectedClass }) {
   };
 
   return (
-    <div className="mt-8 justify-end ">
-      
-      <h3 className="mb-2 ">Teacher:  </h3>
+    <div className="mt-2 flex flex-col">
       
        <p className='border-4 border-gray-900 bg-white  py-1 px-2 mt-1 '>{selectedClass ? selectedClass.teacher : 'No teacher'} </p>
 
-      <form onSubmit={handleAddStudent} className="mt-8">
+      <form onSubmit={handleAddStudent} className="mt-8 flex ">
         <input
           type="text"
           value={newStudentName}
           onChange={(e) => setNewStudentName(e.target.value)}
           placeholder="Enter student name"
-          className="p-2 border-4 border-gray-900 mr-2" 
+          className="p-2 border-4 border-gray-900 mr-2 " 
         />
         <button type="submit" className="bg-green-500  hover:bg-blue-600 font-bold text-white py-2 px-4 shadow-xl">
           Add Student
         </button>
-      </form>
+      </form >
       {sortedStudents.length > 0 ? (
-        <div className="border-4  p-4 border-gray-900  mt-4 bg-white">
-            {sortedStudents.map(student => (
-             <p key={student.id}>{student.name.split(' ')[1]}, {student.name.split(' ')[0]}</p>
-            ))}      
-        </div>
+         <div className="border-4  p-4 border-gray-900  mt-4 bg-white">
+         {sortedStudents.map(student => (
+            <p key={student.id}>
+                {student.name.split(' ').length > 1
+                    ? `${student.name.split(' ')[1]}, ${student.name.split(' ')[0]}`
+                    : student.name}
+            </p>
+        ))}
+     </div>
       ) : (
-        <p className='border-4  p-4 border-gray-900  mt-4 bg-white'> No students found for this class.</p>
+        <p className='border-4 p-4 border-gray-900 mt-4 bg-white'> No students found for this class.</p>
       )}
-    <div className="ml-auto">
+    <div className="ml-auto ">
           <button
             type="button"
             onClick={handleSortAsc}

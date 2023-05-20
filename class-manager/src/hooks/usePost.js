@@ -15,6 +15,7 @@ function usePost() {
       const updatedStudents = [...students, response.data];
 
       setStudents(updatedStudents);
+      console.log(students)
 
       setIsLoading(false);
     } catch (error) {
