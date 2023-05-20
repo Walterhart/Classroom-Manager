@@ -14,9 +14,6 @@ function ClassInfo({ selectedClass }) {
 
   const filteredStudents = students.filter(student => selectedClass ? student.classId.includes(selectedClass.id) : false);
 
-
-
-
   const sortedStudents = filteredStudents.sort((a, b) => {
     if (sortOrder === 'asc') {
       return a.name.localeCompare(b.name);
@@ -61,7 +58,7 @@ function ClassInfo({ selectedClass }) {
           value={newStudentName}
           onChange={(e) => setNewStudentName(e.target.value)}
           placeholder="Enter student name"
-          className="p-2 border-4 border-gray-900  mr-2" 
+          className="p-2 border-4 border-gray-900 mr-2" 
         />
         <button type="submit" className="bg-green-500  hover:bg-blue-600 font-bold text-white py-2 px-4 shadow-xl">
           Add Student
@@ -70,7 +67,7 @@ function ClassInfo({ selectedClass }) {
       {sortedStudents.length > 0 ? (
         <div className="border-4  p-4 border-gray-900  mt-4 bg-white">
             {sortedStudents.map(student => (
-              <p key={student.id}>{student.name}</p>
+             <p key={student.id}>{student.name.split(' ')[1]}, {student.name.split(' ')[0]}</p>
             ))}      
         </div>
       ) : (

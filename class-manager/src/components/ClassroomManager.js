@@ -28,7 +28,7 @@ function ClassroomManager() {
        <Dropdown data={classes} onSelectClass={handleSelectClass} /> {/* Render the Dropdown component and pass the fetched data as props */}
        
        </div>
-       <ClassInfo selectedClass={selectedClass} students={students}  /></div>
+       <ClassInfo selectedClass={selectedClass} students={students}  /> {/* Render the ClassINfo component and pass the fetched data as props */}</div>
        
 
   );
