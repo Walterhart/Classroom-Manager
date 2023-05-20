@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { FaCaretDown } from "react-icons/fa";
 
 function Dropdown({ data, onSelectClass }) {
-  const [isOpen, setIsOpen] = useState(false); // State to manage dropdown visibility
-  const [selectedOption, setSelectedOption] = useState(""); // State to track selected option
+  const [isOpen, setIsOpen] = useState(false); 
+  const [selectedOption, setSelectedOption] = useState(""); 
 
   // Function to toggle dropdown visibility
   const handleToggleDropdown = () => {
@@ -13,7 +13,7 @@ function Dropdown({ data, onSelectClass }) {
   // Function to handle option selection
   const handleSelectOption = (option) => {
     setSelectedOption(option);
-    setIsOpen(false); // Close the dropdown after selecting an option
+    setIsOpen(false);
     onSelectClass(option)
   };
 
