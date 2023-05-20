@@ -18,7 +18,7 @@ function Dropdown({ data, onSelectClass }) {
   };
 
   return (
-    <div className="relative w-72  ">
+    <div className="relative w-44  ">
       {/* Dropdown button */}
       <button
         type="button"
@@ -33,7 +33,7 @@ function Dropdown({ data, onSelectClass }) {
 
       {/* Dropdown options */}
       {isOpen && (
-        <ul className="absolute z-10 w-full bg-white border-4 border-gray-900 mt-1 py-1 px-2 rounded">
+        <ul className="absolute z-10 w-full bg-white border border-gray-900 mt-1 py-1 px-2 rounded">
           {/* Map through data prop and render each option */}
           {data.map((option) => (
             <li

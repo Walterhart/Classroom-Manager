@@ -56,19 +56,19 @@ function ClassInfo({ selectedClass }) {
   };
 
   return (
-    <div className="mt-2 flex flex-col">
+    <div className="mt-2 flex flex-col w-44 ">
       
        <p className='border-4 border-gray-900 bg-white  py-1 px-2 mt-1 '>{selectedClass ? selectedClass.teacher : 'No teacher'} </p>
 
-      <form onSubmit={handleAddStudent} className="mt-8 flex ">
+      <form onSubmit={handleAddStudent} className="mt-8 flex">
         <input
           type="text"
           value={newStudentName}
           onChange={(e) => setNewStudentName(e.target.value)}
           placeholder="Enter student name"
-          className="p-2 border-4 border-gray-900 mr-2 " 
+          className=" py-1 px-2 mt-1 border-4 border-gray-900 mr-2 w-44" 
         />
-        <button type="submit" className="bg-green-500  hover:bg-blue-600 font-bold text-white py-2 px-4 shadow-xl">
+        <button type="submit" className="bg-green-500  hover:bg-blue-600 font-bold text-white py-2 px-4 shadow-xl flex-shrink-0">
           Add Student
         </button>
       </form >
@@ -85,7 +85,7 @@ function ClassInfo({ selectedClass }) {
       ) : (
         <p className='border-4 p-4 border-gray-900 mt-4 bg-white'> No students found for this class.</p>
       )}
-    <div className="ml-auto ">
+    <div className=" ">
           <button
             type="button"
             onClick={handleSortAsc}
