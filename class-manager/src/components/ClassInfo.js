@@ -1,24 +1,25 @@
-import React, { useContext, useState } from 'react';
-import { StudentContext } from '@/context/StudentContext';
-import usePost from '@/hooks/usePost';
+import React, { useContext, useState } from "react";
+import { StudentContext } from "@/context/StudentContext";
+import usePost from "@/hooks/usePost";
 
 function ClassInfo({ selectedClass }) {
-  const { students, isStudentsLoading, setStudents } = useContext(StudentContext);
-  const [newStudentName, setNewStudentName] = useState('');
-  const [sortOrder, setSortOrder] = useState('asc');
+  const { students, isStudentsLoading, setStudents } =
+    useContext(StudentContext);
+  const [newStudentName, setNewStudentName] = useState("");
+  const [sortOrder, setSortOrder] = useState("asc");
   const { addStudent } = usePost();
-  const [isAddingStudent, setIsAddingStudent] = useState(false); 
+  const [isAddingStudent, setIsAddingStudent] = useState(false);
 
   if (isStudentsLoading) {
     return <div>Loading students...</div>;
   }
 
-  const filteredStudents = students.filter(student =>
+  const filteredStudents = students.filter((student) =>
     selectedClass ? student.classId.includes(selectedClass.id) : false
   );
 
   const sortedStudents = filteredStudents.sort((a, b) => {
-    if (sortOrder === 'asc') {
+    if (sortOrder === "asc") {
       return a.name.localeCompare(b.name);
     } else {
       return b.name.localeCompare(a.name);
@@ -27,7 +28,7 @@ function ClassInfo({ selectedClass }) {
 
   const handleAddStudent = async (e) => {
     e.preventDefault();
-    const trimmedStudentName = newStudentName.trim().replace(/\s+/g, ' ')
+    const trimmedStudentName = newStudentName.trim().replace(/\s+/g, " ");
     const regex = /^[a-zA-Z0-9 ']*$/;
     if (!regex.test(newStudentName)) {
       alert("Special characters are not allowed!");
@@ -38,7 +39,7 @@ function ClassInfo({ selectedClass }) {
       return;
     }
 
-    setIsAddingStudent(true); 
+    setIsAddingStudent(true);
     const newStudent = {
       id: Date.now(),
       name: trimmedStudentName,
@@ -47,28 +48,29 @@ function ClassInfo({ selectedClass }) {
 
     try {
       await addStudent(newStudent);
-      setNewStudentName('');
+      setNewStudentName("");
       window.location.reload();
     } catch (error) {
-    
-      console.error('Failed to add student:', error);
-      alert('Failed to add student. Please try again.');
+      console.error("Failed to add student:", error);
+      alert("Failed to add student. Please try again.");
     }
 
     setIsAddingStudent(false);
   };
 
   const handleSortAsc = () => {
-    setSortOrder('asc');
+    setSortOrder("asc");
   };
 
   const handleSortDesc = () => {
-    setSortOrder('desc');
+    setSortOrder("desc");
   };
 
   return (
     <div className="mt-2 flex flex-col w-44 ">
-      <p className='border-4 border-gray-900 bg-white  py-1 px-2 mt-1 '>{selectedClass ? selectedClass.teacher : 'No teacher'} </p>
+      <p className="border-4 border-gray-900 bg-white  py-1 px-2 mt-1 ">
+        {selectedClass ? selectedClass.teacher : "No teacher"}{" "}
+      </p>
       <form onSubmit={handleAddStudent} className="mt-8 flex">
         <input
           type="text"
@@ -79,24 +81,27 @@ function ClassInfo({ selectedClass }) {
         />
         <button
           type="submit"
-          disabled={isAddingStudent} 
+          disabled={isAddingStudent}
           className="bg-green-500 hover:bg-blue-600 font-bold text-white py-2 px-4 shadow-xl flex-shrink-0"
         >
-          {isAddingStudent ? 'Adding...' : 'Add Student'}
+          {isAddingStudent ? "Adding..." : "Add Student"}
         </button>
       </form>
       {sortedStudents.length > 0 ? (
         <div className="border-4  p-4 border-gray-900  mt-4 bg-white ">
-          {sortedStudents.map(student => (
+          {sortedStudents.map((student) => (
             <p key={student.id}>
-              {student.name.split(' ').length > 1
-                ? `${student.name.split(' ')[1]}, ${student.name.split(' ')[0]}`
+              {student.name.split(" ").length > 1
+                ? `${student.name.split(" ")[1]}, ${student.name.split(" ")[0]}`
                 : student.name}
             </p>
           ))}
         </div>
       ) : (
-        <p className='border-4 p-4 border-gray-900 mt-4 bg-white'> No students found for this class.</p>
+        <p className="border-4 p-4 border-gray-900 mt-4 bg-white">
+          {" "}
+          No students found for this class.
+        </p>
       )}
       <div className=" ">
         <button

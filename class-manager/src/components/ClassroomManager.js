@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react';
-import Dropdown from './Dropdown';
-import ClassInfo from './ClassInfo';
-import { ClassContext } from '@/context/ClassContext';
-import { StudentContext } from '@/context/StudentContext';
+import React, { useContext, useState } from "react";
+import Dropdown from "./Dropdown";
+import ClassInfo from "./ClassInfo";
+import { ClassContext } from "@/context/ClassContext";
+import { StudentContext } from "@/context/StudentContext";
 
 function ClassroomManager() {
   const { classes, isClassesLoading, classError } = useContext(ClassContext);
@@ -28,13 +28,14 @@ function ClassroomManager() {
       <h3 className="text-green-500 font-bold mb-4">Classroom Manager</h3>
       <div className="flex item-center">
         <p className="mr-2 mt-2"> Class Name:</p>
-        <Dropdown data={classes} onSelectClass={handleSelectClass} />{/* Render the Dropdown component and pass the fetched data as props */}
+        <Dropdown data={classes} onSelectClass={handleSelectClass} />
+        {/* Render the Dropdown component and pass the fetched data as props */}
       </div>
       <div className="flex">
         <h3 className="mt-4 mr-9">Teacher: </h3>
-        <ClassInfo selectedClass={selectedClass} />{/* Render the ClassInfo component and pass the selectedClass */}
+        <ClassInfo selectedClass={selectedClass} />
+        {/* Render the ClassInfo component and pass the selectedClass */}
       </div>
-      
     </div>
   );
 }

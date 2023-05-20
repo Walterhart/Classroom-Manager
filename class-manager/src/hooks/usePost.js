@@ -1,6 +1,6 @@
-import { useState, useContext } from 'react';
-import axios from 'axios';
-import { StudentContext } from '@/context/StudentContext';
+import { useState, useContext } from "react";
+import axios from "axios";
+import { StudentContext } from "@/context/StudentContext";
 
 function usePost() {
   const { students, setStudents } = useContext(StudentContext);
@@ -11,11 +11,14 @@ function usePost() {
     try {
       setIsLoading(true);
 
-      const response = await axios.post('http://localhost:3500/students', newStudent);
+      const response = await axios.post(
+        "http://localhost:3500/students",
+        newStudent
+      );
       const updatedStudents = [...students, response.data];
 
       setStudents(updatedStudents);
-      console.log(students)
+      console.log(students);
 
       setIsLoading(false);
     } catch (error) {
@@ -28,4 +31,3 @@ function usePost() {
 }
 
 export default usePost;
-
