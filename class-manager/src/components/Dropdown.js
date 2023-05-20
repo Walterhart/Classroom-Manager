@@ -23,11 +23,13 @@ function Dropdown({ data, onSelectClass }) {
       <button
         type="button"
         
-        className="w-full bg-white border-4 border-gray-900 py-2 px-4 text-left rounded flex items-center justify-between " 
+        className="w-full bg-white border-4 border-gray-900 py-2 px-4 text-left flex items-center justify-between " 
         onClick={handleToggleDropdown}
       >
         {/* Display selected option or default text */}
+       
         {selectedOption ? selectedOption.name : "Select class"}
+        
         <FaCaretDown className="ml-2" />
       </button>
 

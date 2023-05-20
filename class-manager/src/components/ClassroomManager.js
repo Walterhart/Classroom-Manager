@@ -34,6 +34,7 @@ function ClassroomManager() {
         <h3 className="mt-4 mr-9">Teacher: </h3>
         <ClassInfo selectedClass={selectedClass} />{/* Render the ClassInfo component and pass the selectedClass */}
       </div>
+      
     </div>
   );
 }
