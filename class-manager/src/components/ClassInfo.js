@@ -7,7 +7,7 @@ function ClassInfo({ selectedClass }) {
   const [newStudentName, setNewStudentName] = useState('');
   const [sortOrder, setSortOrder] = useState('asc');
   const { addStudent } = usePost();
-  const [isAddingStudent, setIsAddingStudent] = useState(false); // New state to track if student is being added
+  const [isAddingStudent, setIsAddingStudent] = useState(false); 
 
   if (isStudentsLoading) {
     return <div>Loading students...</div>;
