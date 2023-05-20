@@ -16,6 +16,7 @@ This repository contains the front-end mockup for the Classroom Manager web appl
 
 To run the program, follow these steps:
 1. In the `class-manager` directory, use the following commands:
+   - Install packages: `npm install`
    - Run server script: `npm run server`
    - Start React script: `npm run build` followed by `npm start`
 
