@@ -6,8 +6,6 @@ export const StudentContext = createContext();
 
 export const StudentProvider = ({ children }) => {
   const { error: studentError, data: students, isLoading: isStudentsLoading } = useFetch('http://localhost:3500/students');
-  console.log(students)
-
   return (
     <StudentContext.Provider value={{ students, isStudentsLoading, studentError }}>
       {children}

@@ -31,6 +31,12 @@ function ClassInfo({ selectedClass }) {
       alert("Special characters are not allowed!");
       return;
     }
+    if (!selectedClass) {
+      alert("Please select a class before adding a new student.");
+      return;
+    }
+
+
     const newStudent = {
       id: Date.now(),
       name: trimmedStudentName,
@@ -38,8 +44,6 @@ function ClassInfo({ selectedClass }) {
     };
 
     await addStudent(newStudent); 
-    console.log(newStudent)
-
     setNewStudentName('');
   };
 
@@ -69,7 +73,7 @@ function ClassInfo({ selectedClass }) {
         </button>
       </form >
       {sortedStudents.length > 0 ? (
-         <div className="border-4  p-4 border-gray-900  mt-4 bg-white">
+         <div className="border-4  p-4 border-gray-900  mt-4 bg-white " >
          {sortedStudents.map(student => (
             <p key={student.id}>
                 {student.name.split(' ').length > 1
