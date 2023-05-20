@@ -18,11 +18,12 @@ function Dropdown({ data, onSelectClass }) {
   };
 
   return (
-    <div className="relative w-72">
+    <div className="relative w-72  ">
       {/* Dropdown button */}
       <button
         type="button"
-        className="w-full bg-white py-2 px-4 text-left rounded flex items-center justify-between focus:outline-none"
+        
+        className="w-full bg-white border-4 border-gray-900 py-2 px-4 text-left rounded flex items-center justify-between " 
         onClick={handleToggleDropdown}
       >
         {/* Display selected option or default text */}
@@ -32,12 +33,12 @@ function Dropdown({ data, onSelectClass }) {
 
       {/* Dropdown options */}
       {isOpen && (
-        <ul className="absolute z-10 w-full bg-white border border-gray-300 mt-1 py-1 px-2 rounded">
+        <ul className="absolute z-10 w-full bg-white border-4 border-gray-900 mt-1 py-1 px-2 rounded">
           {/* Map through data prop and render each option */}
           {data.map((option) => (
             <li
               key={option.id}
-              className="cursor-pointer hover:bg-gray-200 py-1 px-2 rounded"
+              className="cursor-pointer hover:bg-blue-600 hover:text-white py-1 px-2 rounded"
               onClick={() => handleSelectOption(option)}
             >
               {option.name}

@@ -1,6 +1,4 @@
 import React, { useContext, useState } from 'react';
-import ClassList from './ClassInfo'; 
-import useFetch from '@/hooks/useFetch'; 
 import Dropdown from './Dropdown';
 import ClassInfo from './ClassInfo';
 import { ClassContext } from '@/context/ClassContext';
@@ -23,10 +21,16 @@ function ClassroomManager() {
     setSelectedClass(classData);
   };
   return (
-    <div>
+    <div className="flex flex-col items-start ml-6 mt-4">
+      <h3 className='text-green-500 font-bold mb-4'>Classroom Manager</h3>
+          <div className="flex item-center">
+      <p className="mr-2 mt-2"> Class Name:</p>
        <Dropdown data={classes} onSelectClass={handleSelectClass} /> {/* Render the Dropdown component and pass the fetched data as props */}
-       <ClassInfo selectedClass={selectedClass} students={students}  />
-    </div>
+       
+       </div>
+       <ClassInfo selectedClass={selectedClass} students={students}  /></div>
+       
+
   );
 }
 

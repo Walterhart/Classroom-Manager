@@ -49,57 +49,49 @@ function ClassInfo({ selectedClass }) {
   };
 
   return (
-    <div className="mt-8">
-      <p className="mb-2">Teacher: {selectedClass ? selectedClass.teacher : 'No teacher'}</p>
+    <div className="mt-8 justify-end ">
+      
+      <h3 className="mb-2 ">Teacher:  </h3>
+      
+       <p className='border-4 border-gray-900 bg-white  py-1 px-2 mt-1 '>{selectedClass ? selectedClass.teacher : 'No teacher'} </p>
 
-      <div className="flex mb-2">
-        <h3 className="text-xl mr-2">Students</h3>
-        <div className="ml-auto">
+      <form onSubmit={handleAddStudent} className="mt-8">
+        <input
+          type="text"
+          value={newStudentName}
+          onChange={(e) => setNewStudentName(e.target.value)}
+          placeholder="Enter student name"
+          className="p-2 border-4 border-gray-900  mr-2" 
+        />
+        <button type="submit" className="bg-green-500  hover:bg-blue-600 font-bold text-white py-2 px-4 shadow-xl">
+          Add Student
+        </button>
+      </form>
+      {sortedStudents.length > 0 ? (
+        <div className="border-4  p-4 border-gray-900  mt-4 bg-white">
+            {sortedStudents.map(student => (
+              <p key={student.id}>{student.name}</p>
+            ))}      
+        </div>
+      ) : (
+        <p className='border-4  p-4 border-gray-900  mt-4 bg-white'> No students found for this class.</p>
+      )}
+    <div className="ml-auto">
           <button
             type="button"
             onClick={handleSortAsc}
-            className={`px-2 py-1 rounded ${
-              sortOrder === 'asc' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-600'
-            }`}
+            className={`px-2 py-1 mr-2  mt-4  bg-green-500  hover:bg-blue-500 text-white font-bold shadow-xl`}
           >
             Sort Asc
           </button>
           <button
             type="button"
             onClick={handleSortDesc}
-            className={`px-2 py-1 rounded ${
-              sortOrder === 'desc' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-600'
-            }`}
+            className={`px-2 py-1  bg-green-500  hover:bg-blue-500 text-white font-bold shadow-xl`}
           >
             Sort Desc
           </button>
         </div>
-      </div>
-
-      {sortedStudents.length > 0 ? (
-        <div className="border rounded p-4 bg-blue-500">
-          <ul className="list-disc pl-6">
-            {sortedStudents.map(student => (
-              <li key={student.id}>{student.name}</li>
-            ))}
-          </ul>
-        </div>
-      ) : (
-        <p>No students found for this class.</p>
-      )}
-
-      <form onSubmit={handleAddStudent} className="mt-4">
-        <input
-          type="text"
-          value={newStudentName}
-          onChange={(e) => setNewStudentName(e.target.value)}
-          placeholder="Enter student name"
-          className="p-2 border border-gray-300 rounded mr-2"
-        />
-        <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
-          Add Student
-        </button>
-      </form>
     </div>
   );
 }
