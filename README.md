@@ -15,15 +15,14 @@ This repository contains the front-end mockup for the Classroom Manager web appl
 ## Running the Program
 
 To run the program, follow these steps:
-
 1. In the `class-manager` directory, use the following commands:
    - Run server script: `npm run server`
    - Start React script: `npm run build` followed by `npm start`
 
-#Time
+## Time
   Roughly 12 hours
   
-##Assumptions
+## Assumptions
 1. Student with same name can be in same class. 
 2. Should look simlair as possble to given sheet.
 3. Reload page on submit
@@ -32,7 +31,7 @@ To run the program, follow these steps:
 6. Handle white space and allowed characters when adding a new student.
 7. Database store Fullname instead of firstname and lastname.
 
-##More time
+## More time
 1. I would refactor to better organize css
 2. Make api for backend
 3. Separate name into firstname and lastname
